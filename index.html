@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PlayVerse - Mini Games</title>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <div class="particles" id="particles"></div>
+
+  <nav>
+    <a href="#" class="logo">
+      <div class="logo-icon">🎮</div>
+      PlayVerse
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#games">Games</a></li>
+      <li><a href="#how">How to Play</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <a href="#games" class="nav-cta">Play Now →</a>
+  </nav>
+
+  <section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+
+    <div class="hero-inner">
+
+      <div class="hero-left">
+        <div class="hero-badge">🟢 5 Games Available — Play Free</div>
+
+        <h1>Welcome to <span>PlayVerse</span></h1>
+
+        <p>
+          Play classic mini games — Rock Paper Scissors, Tic Tac Toe,
+          Memory Match, Quiz & Number Guessing. No download, no login. Just fun.
+        </p>
+
+        <div class="hero-btns">
+          <a href="#games" class="btn-primary">🎮 Start Playing</a>
+          <a href="#how" class="btn-secondary">How to Play</a>
+        </div>
+      </div>
+
+      <div class="hero-cards">
+
+        <a href="#games" class="hero-card">
+          <div class="hero-card-icon icon-rps">✊</div>
+          <div class="hero-card-info">
+            <h4>Rock Paper Scissors</h4>
+            <p>Classic 3-choice battle vs CPU</p>
+          </div>
+          <span class="hero-card-arrow">→</span>
+        </a>
+
+        <a href="#games" class="hero-card">
+          <div class="hero-card-icon icon-ttt">❌</div>
+          <div class="hero-card-info">
+            <h4>Tic Tac Toe</h4>
+            <p>3×3 grid, outsmart the CPU</p>
+          </div>
+          <span class="hero-card-arrow">→</span>
+        </a>
+
+        <a href="#games" class="hero-card">
+          <div class="hero-card-icon icon-mem">🧠</div>
+          <div class="hero-card-info">
+            <h4>Memory Match</h4>
+            <p>Flip cards, find the pairs</p>
+          </div>
+          <span class="hero-card-arrow">→</span>
+        </a>
+
+        <a href="#games" class="hero-card">
+          <div class="hero-card-icon icon-quiz">💡</div>
+          <div class="hero-card-info">
+            <h4>Quiz Game</h4>
+            <p>Test your general knowledge</p>
+          </div>
+          <span class="hero-card-arrow">→</span>
+        </a>
+
+        <a href="#games" class="hero-card">
+          <div class="hero-card-icon icon-num">🎯</div>
+          <div class="hero-card-info">
+            <h4>Number Guessing</h4>
+            <p>Hot & cold hints, find the number</p>
+          </div>
+          <span class="hero-card-arrow">→</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="stats-bar">
+    <div class="stats-inner">
+      <div class="stat">
+        <div class="stat-num">5</div>
+        <div class="stat-label">Games Available</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">0ms</div>
+        <div class="stat-label">Load Time</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Free Forever</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">∞</div>
+        <div class="stat-label">Replays</div>
+      </div>
+    </div>
+  </div>
+
+  <section class="games-section" id="games">
+
+    <div class="section-header">
+      <span class="section-tag">🔥 Games</span>
+      <h2>Choose Your Game</h2>
+    </div>
+
+    <div class="games-grid">
+
+      <div class="game-card">
+        <div class="game-card-thumb thumb-rps">✊📄✂️</div>
+        <div class="game-card-body">
+          <h3>Rock Paper Scissors</h3>
+          <p>Classic hand game against a smart CPU.</p>
+          <div class="game-card-footer">
+            <span class="difficulty diff-easy">Easy</span>
+            <button class="play-btn">Play →</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="game-card">
+        <div class="game-card-thumb thumb-ttt">❌⭕</div>
+        <div class="game-card-body">
+          <h3>Tic Tac Toe</h3>
+          <p>Beat the CPU on a 3×3 grid.</p>
+          <div class="game-card-footer">
+            <span class="difficulty diff-medium">Medium</span>
+            <button class="play-btn" onclick="openGame()">Play →</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="game-card">
+        <div class="game-card-thumb thumb-mem">🃏</div>
+        <div class="game-card-body">
+          <h3>Memory Match</h3>
+          <p>Flip cards and find pairs.</p>
+          <div class="game-card-footer">
+            <span class="difficulty diff-medium">Medium</span>
+            <button class="play-btn">Play →</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="game-card">
+        <div class="game-card-thumb thumb-quiz">💡</div>
+        <div class="game-card-body">
+          <h3>Quiz Game</h3>
+          <p>Answer 10 general knowledge questions.</p>
+          <div class="game-card-footer">
+            <span class="difficulty diff-hard">Hard</span>
+            <button class="play-btn">Play →</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="game-card">
+        <div class="game-card-thumb thumb-num">🎯</div>
+        <div class="game-card-body">
+          <h3>Number Guessing</h3>
+          <p>Guess the hidden number.</p>
+          <div class="game-card-footer">
+            <span class="difficulty diff-easy">Easy</span>
+            <button class="play-btn">Play →</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="how-section" id="how">
+
+    <div class="how-inner">
+
+      <div class="section-header">
+        <span class="section-tag">📖 Guide</span>
+        <h2>How to Play</h2>
+      </div>
+
+      <div class="how-steps">
+
+        <div class="how-step">
+          <div class="step-num">1</div>
+          <h4>Choose a Game</h4>
+          <p>Select any game you want to play.</p>
+        </div>
+
+        <div class="how-step">
+          <div class="step-num">2</div>
+          <h4>Play vs CPU</h4>
+          <p>Compete against computer opponent.</p>
+        </div>
+
+        <div class="how-step">
+          <div class="step-num">3</div>
+          <h4>Beat Your Score</h4>
+          <p>Improve your score each time.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div id="tictoc" class="modal">
+    <div class="modal-content">
+
+      <h2>Tic Tac Toe</h2>
+      <p id="status">X starts first</p>
+
+      <div class="tictocgameboard">
+        <div onclick="makeMove(0)"></div>
+        <div onclick="makeMove(1)"></div>
+        <div onclick="makeMove(2)"></div>
+        <div onclick="makeMove(3)"></div>
+        <div onclick="makeMove(4)"></div>
+        <div onclick="makeMove(5)"></div>
+        <div onclick="makeMove(6)"></div>
+        <div onclick="makeMove(7)"></div>
+        <div onclick="makeMove(8)"></div>
+      </div>
+
+      <div>
+        <button onclick="resetGame()" class="play-btn">Restart</button>
+        <button onclick="closeGame()" class="play-btn" style="background:#ff4d8d;">Close</button>
+      </div>
+
+    </div>
+  </div>
+
+  <footer id="contact">
+    <div class="footer-inner">
+      <p>© 2026 PlayVerse — Made with ❤️</p>
+      <div class="footer-links">
+        <a href="#">Home</a>
+        <a href="#games">Games</a>
+        <a href="#how">How to Play</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
