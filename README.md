@@ -1,7 +1,7 @@
 # 🎮 PlayVerse
 
 <p align="center">
-  <img src="assets/Playverse.svg" width="750" alt="PlayVerse Screenshot"/>
+  <img src="assets/playverse.svg" width="750" alt="PlayVerse Screenshot"/>
 </p>
 
 <p align="center">
@@ -75,11 +75,11 @@ playverse-proj/
 ## 📸 Preview
 
 <p align="center">
-  <img src="assets/screenshot1.png" width="650" alt="Project Preview"/>
+  <img src="assets/Screenshot1.png" width="650" alt="Project Preview"/>
 </p>
 
 <p align="center">
-  <img src="assets/screenshot2.png" width="650" alt="Project Preview"/>
+  <img src="assets/Screenshot2.png" width="650" alt="Project Preview"/>
 </p>
 ---
 ## 💡 Key Learnings
