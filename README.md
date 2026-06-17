@@ -1,7 +1,7 @@
 # 🎮 PlayVerse
 
 <p align="center">
-  <img src="assets/screenshot.png" width="750" alt="PlayVerse Screenshot"/>
+  <img src="assets/Playverse.svg" width="750" alt="PlayVerse Screenshot"/>
 </p>
 
 <p align="center">
@@ -68,7 +68,6 @@ playverse-proj/
 │── assets/
 │   ├── screenshot1.png
 │   ├── screenshot2.png
-│   └── screenshot3.png
 │── README.md
 
 ---
