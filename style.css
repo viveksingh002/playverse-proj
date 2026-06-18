@@ -634,3 +634,16 @@ footer {
 .tictocgameboard div:hover {
     background: rgba(0, 212, 255, 0.1);
 }
+.rps-buttons{
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-top:15px;
+}
+
+#rpsResult{
+  font-size:18px;
+  font-weight:bold;
+  color:var(--cyan);
+}

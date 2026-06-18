@@ -121,3 +121,53 @@ function resetGame(){
 
   document.getElementById("status").innerText = "X starts first";
 }
+
+// OPEN
+function openRPS(){
+  document.getElementById("rpsModal").style.display = "flex";
+}
+
+// CLOSE
+function closeRPS(){
+  document.getElementById("rpsModal").style.display = "none";
+
+  document.getElementById("rpsStatus").innerText =
+    "Choose your move";
+
+  document.getElementById("rpsResult").innerHTML = "";
+}
+
+// GAME LOGIC
+let playerScore = 0;
+let computerScore = 0;
+function playRPS(player){
+
+  const choices = ["rock","paper","scissors"];
+
+  const computer =
+    choices[Math.floor(Math.random() * 3)];
+
+  let result = "";
+
+  if(player === computer){
+    result = "😐 Draw";
+  }
+  else if(
+    (player === "rock" && computer === "scissors") ||
+    (player === "paper" && computer === "rock") ||
+    (player === "scissors" && computer === "paper")
+  ){
+    result = "🎉 You Win!";
+    playerScore++;
+  }
+  else{
+    result = "🤖 Computer Wins!";
+    computerScore++;
+  }
+
+  document.getElementById("rpsResult").innerHTML = `
+    You: <b>${player}</b><br>
+    Computer: <b>${computer}</b><br><br>
+    ${result}
+  `;
+}
