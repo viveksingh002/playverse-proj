@@ -634,16 +634,41 @@ footer {
 .tictocgameboard div:hover {
     background: rgba(0, 212, 255, 0.1);
 }
-.rps-buttons{
-  display:flex;
-  gap:10px;
-  justify-content:center;
-  flex-wrap:wrap;
-  margin-top:15px;
+/* Score Board */
+#playerScore,
+#computerScore {
+  color: #00d4ff;
+  font-weight: 700;
+  font-size: 24px;
 }
 
-#rpsResult{
-  font-size:18px;
-  font-weight:bold;
-  color:var(--cyan);
+.score-board {
+  margin-top: 15px;
+  padding: 12px 20px;
+  background: #1a1e30;
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: 12px;
+  text-align: center;
+  font-size: 18px;
+  color: white;
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.15);
+}
+/* .rps-buttons{
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+} */
+.rps-buttons .play-btn{
+  padding: 12px 20px;
+  margin-top: 12px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.rps-buttons .play-btn:hover{
+  transform: translateY(-2px);
 }

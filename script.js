@@ -137,37 +137,38 @@ function closeRPS(){
   document.getElementById("rpsResult").innerHTML = "";
 }
 
-// GAME LOGIC
 let playerScore = 0;
 let computerScore = 0;
-function playRPS(player){
 
-  const choices = ["rock","paper","scissors"];
+function playRPS(player) {
 
-  const computer =
-    choices[Math.floor(Math.random() * 3)];
+  const choices = ["rock", "paper", "scissors"];
+  const computer = choices[Math.floor(Math.random() * 3)];
 
   let result = "";
 
-  if(player === computer){
+  if (player === computer) {
     result = "😐 Draw";
-  }
-  else if(
+  } 
+  else if (
     (player === "rock" && computer === "scissors") ||
     (player === "paper" && computer === "rock") ||
     (player === "scissors" && computer === "paper")
-  ){
+  ) {
     result = "🎉 You Win!";
     playerScore++;
-  }
-  else{
+  } 
+  else {
     result = "🤖 Computer Wins!";
     computerScore++;
   }
 
+  document.getElementById("playerScore").innerText = playerScore;
+  document.getElementById("computerScore").innerText = computerScore;
+
   document.getElementById("rpsResult").innerHTML = `
-    You: <b>${player}</b><br>
-    Computer: <b>${computer}</b><br><br>
-    ${result}
+    <p>You chose: <b>${player}</b></p>
+    <p>Computer chose: <b>${computer}</b></p>
+    <h3>${result}</h3>
   `;
 }
