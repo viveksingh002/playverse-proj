@@ -195,6 +195,7 @@ function startMemoryGame() {
   const board = document.getElementById("memoryGame");
 
   board.innerHTML = "";
+  document.getElementById("memoryResult").textContent = "";
   flippedCards = [];
   lockBoard = false;
 
@@ -240,7 +241,8 @@ function checkMatch() {
 
     if (matched === memorySymbols.length) {
       setTimeout(() => {
-        alert("🎉 You Won!");
+        document.getElementById("memoryResult").textContent =
+    "🎉 Congratulations! You Won!";;
       }, 300);
     }
   } else {
