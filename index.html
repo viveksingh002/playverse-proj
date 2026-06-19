@@ -167,7 +167,7 @@
           <p>Flip cards and find pairs.</p>
           <div class="game-card-footer">
             <span class="difficulty diff-medium">Medium</span>
-            <button class="play-btn">Play →</button>
+            <button class="play-btn" onclick="document.getElementById('memoryModal').style.display='block'">Play →</button>
           </div>
         </div>
       </div>
@@ -232,6 +232,8 @@
     </div>
   </section>
 
+   <!-- tic tac toe game -->
+
   <div id="tictoc" class="modal">
     <div class="modal-content">
 
@@ -260,7 +262,7 @@
     </div>
   </div>
 
-  <!-- ================= ROCK PAPER SCISSORS ================= -->
+  <!-- rock paper scissors game -->
   <div id="rpsModal" class="modal">
     <div class="modal-content">
 
@@ -290,6 +292,22 @@
 
     </div>
   </div>
+
+<!-- memory game -->
+
+<div id="memoryModal" class="modal">
+  <div class="modal-content">
+
+    <h2>🧠 Memory Match</h2>
+    <p>Flip cards and find pairs</p>
+
+    <div id="memoryBoard" class="memory-board"></div>
+
+    <button onclick="startMemoryGame()" class="play-btn">Restart</button>
+    <button onclick="closeMemory()" class="play-btn" style="background:#ff4d8d;">Close</button>
+
+  </div>
+</div>
 
 
   <footer id="contact">

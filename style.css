@@ -672,3 +672,39 @@ footer {
 .rps-buttons .play-btn:hover{
   transform: translateY(-2px);
 }
+
+.memory-board {
+  display: grid;
+  grid-template-columns: repeat(4, 80px);
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
+  padding: 10px;
+}
+.card {
+  width: 80px;
+  height: 80px;
+  background: #1a1e30;
+  border: 1px solid rgba(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  cursor: pointer;
+  border-radius: 12px;
+  user-select: none;
+  transition: all 0.2s ease;
+  color: white;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  border-color: rgba(0, 212, 255, 0.4);
+}
+.card.flipped {
+  background: #00d4ff;
+  color: #000;
+  font-weight: bold;
+  transform: rotateY(180deg);
+}

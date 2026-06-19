@@ -172,3 +172,72 @@ function playRPS(player) {
     <h3>${result}</h3>
   `;
 }
+
+
+const symbols = ["🍎","🍌","🍇","🍒","🍎","🍌","🍇","🍒"];
+
+let firstCard = null;
+let secondCard = null;
+let lockBoard = false;
+
+function startMemoryGame() {
+  const board = document.getElementById("memoryBoard");
+
+  board.innerHTML = "";
+
+  let shuffled = [...symbols].sort(() => Math.random() - 0.5);
+
+  shuffled.forEach(symbol => {
+    const card = document.createElement("div");
+    card.classList.add("card");
+    card.dataset.symbol = symbol;
+    card.innerText = "❓";
+
+    card.onclick = () => flipCard(card);
+
+    board.appendChild(card);
+  });
+
+  firstCard = null;
+  secondCard = null;
+  lockBoard = false;
+}
+
+function flipCard(card) {
+  if (lockBoard || card.classList.contains("flipped")) return;
+
+  card.classList.add("flipped");
+  card.innerText = card.dataset.symbol;
+
+  if (!firstCard) {
+    firstCard = card;
+    return;
+  }
+
+  secondCard = card;
+  lockBoard = true;
+
+  if (firstCard.dataset.symbol === secondCard.dataset.symbol) {
+    resetTurn();
+  } else {
+    setTimeout(() => {
+      firstCard.classList.remove("flipped");
+      secondCard.classList.remove("flipped");
+
+      firstCard.innerText = "❓";
+      secondCard.innerText = "❓";
+
+      resetTurn();
+    }, 700);
+  }
+}
+
+function resetTurn() {
+  firstCard = null;
+  secondCard = null;
+  lockBoard = false;
+}
+
+function closeMemory() {
+  document.getElementById("memoryModal").style.display = "none";
+}
