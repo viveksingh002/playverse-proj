@@ -173,12 +173,12 @@ function playRPS(player) {
   `;
 }
 
-
 const symbols = ["🍎","🍌","🍇","🍒","🍎","🍌","🍇","🍒"];
 
 let firstCard = null;
 let secondCard = null;
 let lockBoard = false;
+let matchedCards = 0;
 
 function startMemoryGame() {
   const board = document.getElementById("memoryBoard");
@@ -187,24 +187,34 @@ function startMemoryGame() {
 
   let shuffled = [...symbols].sort(() => Math.random() - 0.5);
 
-  shuffled.forEach(symbol => {
-    const card = document.createElement("div");
-    card.classList.add("card");
-    card.dataset.symbol = symbol;
-    card.innerText = "❓";
-
-    card.onclick = () => flipCard(card);
-
-    board.appendChild(card);
-  });
-
+  matchedCards = 0;
   firstCard = null;
   secondCard = null;
   lockBoard = false;
+
+  shuffled.forEach(symbol => {
+    const card = document.createElement("div");
+    card.classList.add("card");
+
+    card.dataset.symbol = symbol;
+    card.dataset.matched = "false";
+
+    card.innerText = "❓";
+
+    card.addEventListener("click", () => flipCard(card));
+
+    board.appendChild(card);
+  });
 }
 
 function flipCard(card) {
-  if (lockBoard || card.classList.contains("flipped")) return;
+
+  // ❌ ignore conditions FIXED
+  if (
+    lockBoard ||
+    card.dataset.matched === "true" ||
+    card.classList.contains("flipped")
+  ) return;
 
   card.classList.add("flipped");
   card.innerText = card.dataset.symbol;
@@ -218,8 +228,25 @@ function flipCard(card) {
   lockBoard = true;
 
   if (firstCard.dataset.symbol === secondCard.dataset.symbol) {
+
+    // ✅ MATCH FOUND
+    firstCard.dataset.matched = "true";
+    secondCard.dataset.matched = "true";
+
+    matchedCards += 2;
+
     resetTurn();
+
+    // optional WIN CHECK
+    if (matchedCards === symbols.length) {
+      setTimeout(() => {
+        alert("🎉 You Win!");
+      }, 300);
+    }
+
   } else {
+
+    // ❌ NO MATCH
     setTimeout(() => {
       firstCard.classList.remove("flipped");
       secondCard.classList.remove("flipped");
@@ -228,7 +255,7 @@ function flipCard(card) {
       secondCard.innerText = "❓";
 
       resetTurn();
-    }, 700);
+    }, 600);
   }
 }
 

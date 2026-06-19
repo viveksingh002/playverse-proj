@@ -672,39 +672,114 @@ footer {
 .rps-buttons .play-btn:hover{
   transform: translateY(-2px);
 }
-
-.memory-board {
-  display: grid;
-  grid-template-columns: repeat(4, 80px);
-  gap: 12px;
+/* =========================
+   MODAL FIX (IMPORTANT)
+========================= */
+#memoryModal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(6px);
   justify-content: center;
   align-items: center;
-  margin: 20px auto;
-  padding: 10px;
+  z-index: 9999;
 }
+
+/* =========================
+   MODAL BOX
+========================= */
+#memoryModal .modal-content {
+  background: #131626;
+  padding: 20px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 420px;
+  text-align: center;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+}
+
+/* =========================
+   MEMORY BOARD GRID
+========================= */
+.memory-board {
+  display: grid;
+  grid-template-columns: repeat(4, 75px);
+  gap: 12px;
+  justify-content: center;
+  margin: 20px auto;
+}
+
+/* =========================
+   CARD DESIGN FIXED
+========================= */
 .card {
-  width: 80px;
-  height: 80px;
+  width: 75px;
+  height: 75px;
   background: #1a1e30;
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 28px;
+
+  font-size: 26px;
   cursor: pointer;
-  border-radius: 12px;
   user-select: none;
+
+  color: #fff;
   transition: all 0.2s ease;
-  color: white;
 }
 
+/* hover effect */
 .card:hover {
-  transform: scale(1.05);
+  transform: scale(1.06);
   border-color: rgba(0, 212, 255, 0.4);
+  box-shadow: 0 0 12px rgba(0, 212, 255, 0.15);
 }
+
+/* flipped state */
 .card.flipped {
   background: #00d4ff;
   color: #000;
   font-weight: bold;
   transform: rotateY(180deg);
+}
+
+/* =========================
+   BUTTON FIX (PLAYVERSE STYLE)
+========================= */
+.play-btn {
+  background: #00d4ff;
+  color: #000;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+  margin-top: 10px;
+}
+
+.play-btn:hover {
+  background: #fff;
+  transform: translateY(-2px);
+}
+
+/* =========================
+   RESPONSIVE FIX
+========================= */
+@media (max-width: 500px) {
+  .memory-board {
+    grid-template-columns: repeat(4, 60px);
+    gap: 8px;
+  }
+
+  .card {
+    width: 60px;
+    height: 60px;
+    font-size: 22px;
+  }
 }
