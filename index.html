@@ -160,17 +160,34 @@
         </div>
       </div>
 
-      <div class="game-card">
-        <div class="game-card-thumb thumb-mem">🃏</div>
-        <div class="game-card-body">
-          <h3>Memory Match</h3>
-          <p>Flip cards and find pairs.</p>
-          <div class="game-card-footer">
-            <span class="difficulty diff-medium">Medium</span>
-            <button class="play-btn" onclick="document.getElementById('memoryModal').style.display='block'">Play →</button>
-          </div>
-        </div>
-      </div>
+<div class="game-card">
+  <div class="game-card-thumb thumb-mem">🃏</div>
+  <div class="game-card-body">
+    <h3>Memory Match</h3>
+    <p>Flip cards and find pairs.</p>
+    <div class="game-card-footer">
+      <span class="difficulty diff-medium">Medium</span>
+      <button class="play-btn" onclick="openMemoryGame()">
+        Play →
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Memory Game Modal -->
+<div id="memoryModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeMemoryGame()">&times;</span>
+
+    <h2>🃏 Memory Match</h2>
+
+    <div id="memoryGame" class="memory-grid"></div>
+
+    <button class="play-btn" onclick="startMemoryGame()">
+      Restart Game
+    </button>
+  </div>
+</div>
 
       <div class="game-card">
         <div class="game-card-thumb thumb-quiz">💡</div>

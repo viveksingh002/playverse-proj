@@ -172,99 +172,89 @@ function playRPS(player) {
     <h3>${result}</h3>
   `;
 }
+const memorySymbols = [
+  '🍎','🍎',
+  '🚀','🚀',
+  '🎮','🎮',
+  '⚽','⚽'
+];
 
-const symbols = ["🍎","🍌","🍇","🍒","🍎","🍌","🍇","🍒"];
-
-let firstCard = null;
-let secondCard = null;
+let flippedCards = [];
 let lockBoard = false;
-let matchedCards = 0;
+
+function openMemoryGame() {
+  document.getElementById("memoryModal").style.display = "block";
+  startMemoryGame();
+}
+
+function closeMemoryGame() {
+  document.getElementById("memoryModal").style.display = "none";
+}
 
 function startMemoryGame() {
-  const board = document.getElementById("memoryBoard");
+  const board = document.getElementById("memoryGame");
 
   board.innerHTML = "";
-
-  let shuffled = [...symbols].sort(() => Math.random() - 0.5);
-
-  matchedCards = 0;
-  firstCard = null;
-  secondCard = null;
+  flippedCards = [];
   lockBoard = false;
 
-  shuffled.forEach(symbol => {
+  const cards = [...memorySymbols].sort(() => Math.random() - 0.5);
+
+  cards.forEach(symbol => {
     const card = document.createElement("div");
-    card.classList.add("card");
 
+    card.className = "memory-card";
     card.dataset.symbol = symbol;
-    card.dataset.matched = "false";
+    card.textContent = "?";
 
-    card.innerText = "❓";
-
-    card.addEventListener("click", () => flipCard(card));
+    card.onclick = () => flipCard(card);
 
     board.appendChild(card);
   });
 }
 
 function flipCard(card) {
-
-  // ❌ ignore conditions FIXED
   if (
     lockBoard ||
-    card.dataset.matched === "true" ||
     card.classList.contains("flipped")
   ) return;
 
+  card.textContent = card.dataset.symbol;
   card.classList.add("flipped");
-  card.innerText = card.dataset.symbol;
 
-  if (!firstCard) {
-    firstCard = card;
-    return;
+  flippedCards.push(card);
+
+  if (flippedCards.length === 2) {
+    checkMatch();
   }
+}
 
-  secondCard = card;
-  lockBoard = true;
+function checkMatch() {
+  const [card1, card2] = flippedCards;
 
-  if (firstCard.dataset.symbol === secondCard.dataset.symbol) {
+  if (card1.dataset.symbol === card2.dataset.symbol) {
+    flippedCards = [];
 
-    // ✅ MATCH FOUND
-    firstCard.dataset.matched = "true";
-    secondCard.dataset.matched = "true";
+    const matched =
+      document.querySelectorAll(".memory-card.flipped").length;
 
-    matchedCards += 2;
-
-    resetTurn();
-
-    // optional WIN CHECK
-    if (matchedCards === symbols.length) {
+    if (matched === memorySymbols.length) {
       setTimeout(() => {
-        alert("🎉 You Win!");
+        alert("🎉 You Won!");
       }, 300);
     }
-
   } else {
+    lockBoard = true;
 
-    // ❌ NO MATCH
     setTimeout(() => {
-      firstCard.classList.remove("flipped");
-      secondCard.classList.remove("flipped");
+      card1.textContent = "?";
+      card2.textContent = "?";
 
-      firstCard.innerText = "❓";
-      secondCard.innerText = "❓";
+      card1.classList.remove("flipped");
+      card2.classList.remove("flipped");
 
-      resetTurn();
-    }, 600);
+      flippedCards = [];
+      lockBoard = false;
+    }, 800);
   }
-}
-
-function resetTurn() {
-  firstCard = null;
-  secondCard = null;
-  lockBoard = false;
-}
-
-function closeMemory() {
-  document.getElementById("memoryModal").style.display = "none";
 }
