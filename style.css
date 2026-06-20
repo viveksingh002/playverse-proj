@@ -760,7 +760,7 @@ footer {
 #quizQuestion {
   margin: 15px 0;
   font-size: 18px;
-  color: white;
+  color: rgb(36, 0, 0);
 }
 
 #quizOptions {
@@ -783,4 +783,14 @@ footer {
   color: #00d4ff;
   font-weight: bold;
   font-size: 18px;
+}
+#resultBox {
+  text-align: center;
+  padding: 20px;
+  color: white;
+}
+
+#resultBox h2 {
+  color: #00d4ff;
+  margin-bottom: 10px;
 }

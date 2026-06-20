@@ -262,7 +262,6 @@ function checkMatch() {
 }
 
 
-
 const questions = [
   {
     q: "What is the capital of India?",
@@ -292,9 +291,9 @@ const questions = [
 ];
 
 let current = 0;
-let score = 0;
 let timer;
 let timeLeft = 10;
+let score = 0;
 
 function startTimer() {
   clearInterval(timer);
@@ -309,12 +308,13 @@ function startTimer() {
 
     if (timeLeft === 0) {
       clearInterval(timer);
-      nextQuestion(); // auto move
+      nextQuestion();
     }
   }, 1000);
 }
 
 function loadQuestion() {
+
   let q = questions[current];
 
   document.getElementById("quizQuestion").innerText = q.q;
@@ -331,6 +331,7 @@ function loadQuestion() {
 }
 
 function checkAnswer(selected) {
+
   if (selected === questions[current].answer) {
     score++;
   }
@@ -339,14 +340,16 @@ function checkAnswer(selected) {
 }
 
 function nextQuestion() {
+
   current++;
 
   if (current >= questions.length) {
     clearInterval(timer);
-    alert("Quiz Finished! Score: " + score);
+
 
     current = 0;
     score = 0;
+
     loadQuestion();
     return;
   }
@@ -356,12 +359,48 @@ function nextQuestion() {
 
 function openQuiz() {
   document.getElementById("quizModal").style.display = "flex";
+
   current = 0;
   score = 0;
+
   loadQuestion();
 }
 
 function closeQuiz() {
   document.getElementById("quizModal").style.display = "none";
   clearInterval(timer);
+}
+function nextQuestion() {
+
+  current++;
+
+  if (current >= questions.length) {
+
+    clearInterval(timer);
+
+    document.getElementById("quizQuestion").style.display = "none";
+    document.getElementById("quizOptions").style.display = "none";
+    document.getElementById("timer").style.display = "none";
+
+    document.getElementById("resultBox").style.display = "block";
+    document.getElementById("finalScore").innerText =
+      "Your Score: " + score + " / " + questions.length;
+
+    return;
+  }
+
+  loadQuestion();
+}
+function restartQuiz() {
+
+  score = 0;
+  current = 0;
+
+  document.getElementById("resultBox").style.display = "none";
+
+  document.getElementById("quizQuestion").style.display = "block";
+  document.getElementById("quizOptions").style.display = "block";
+  document.getElementById("timer").style.display = "block";
+
+  loadQuestion();
 }

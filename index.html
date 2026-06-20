@@ -341,10 +341,18 @@
 
     <div id="quizOptions"></div>
 
-    <p id="quizScore">Score: 0</p>
+  
 
     <button onclick="nextQuestion()" class="play-btn">Next</button>
     <button onclick="closeQuiz()" class="play-btn" style="background:#ff4d8d;">Close</button>
+
+<div id="resultBox" style="display:none;">
+  <h2>Quiz Result</h2>
+  <p id="finalScore"></p>
+
+  <button onclick="restartQuiz()" class="play-btn">Play Again</button>
+  <button onclick="closeResult()" class="play-btn" style="background:#ff4d8d;">Close</button>
+</div>
 
   </div>
 
