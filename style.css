@@ -737,60 +737,30 @@ footer {
     margin-bottom: 10px;
 }
 
-#quizModal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.7);
-  backdrop-filter: blur(6px);
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
 
-#quizModal .modal-content {
-  background: #131626;
-  padding: 22px;
-  border-radius: 16px;
-  width: 420px;
-  text-align: center;
-  border: 1px solid rgba(255,255,255,0.08);
+#quizBox, #resultBox {
+  padding: 10px;
 }
 
 #quizQuestion {
   margin: 15px 0;
   font-size: 18px;
-  color: rgb(36, 0, 0);
+  color: #ff4d4d;
+  font-weight: 600;
 }
 
 #quizOptions {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin-bottom: 15px;
 }
 
-#quizOptions .play-btn {
+#quizOptions button {
   width: 100%;
-  background: #1a1e30;
-  color: white;
 }
 
-#quizOptions .play-btn:hover {
-  background: #00d4ff;
-  color: black;
-}
-#timer {
-  color: #00d4ff;
-  font-weight: bold;
+#resultBox p {
   font-size: 18px;
-}
-#resultBox {
-  text-align: center;
-  padding: 20px;
-  color: white;
-}
-
-#resultBox h2 {
-  color: #00d4ff;
-  margin-bottom: 10px;
+  margin: 10px 0;
 }

@@ -289,7 +289,6 @@ const questions = [
     answer: "Hyper Text Markup Language"
   }
 ];
-
 let current = 0;
 let timer;
 let timeLeft = 10;
@@ -303,39 +302,34 @@ function startTimer() {
 
   timer = setInterval(() => {
     timeLeft--;
-
     document.getElementById("timer").innerText = timeLeft;
 
     if (timeLeft === 0) {
-      clearInterval(timer);
       nextQuestion();
     }
   }, 1000);
 }
 
 function loadQuestion() {
-
   let q = questions[current];
 
   document.getElementById("quizQuestion").innerText = q.q;
 
-  let optionsHTML = "";
+  let html = "";
 
   q.options.forEach(opt => {
-    optionsHTML += `<button class="play-btn" onclick="checkAnswer('${opt}')">${opt}</button>`;
+    html += `<button class="play-btn" onclick="checkAnswer('${opt}')">${opt}</button>`;
   });
 
-  document.getElementById("quizOptions").innerHTML = optionsHTML;
+  document.getElementById("quizOptions").innerHTML = html;
 
   startTimer();
 }
 
-function checkAnswer(selected) {
-
-  if (selected === questions[current].answer) {
+function checkAnswer(opt) {
+  if (opt === questions[current].answer) {
     score++;
   }
-
   nextQuestion();
 }
 
@@ -344,13 +338,15 @@ function nextQuestion() {
   current++;
 
   if (current >= questions.length) {
+
     clearInterval(timer);
 
+    document.getElementById("quizBox").style.display = "none";
+    document.getElementById("resultBox").style.display = "block";
 
-    current = 0;
-    score = 0;
+    document.getElementById("finalScore").innerText =
+      `Your Score: ${score} / ${questions.length}`;
 
-    loadQuestion();
     return;
   }
 
@@ -363,44 +359,17 @@ function openQuiz() {
   current = 0;
   score = 0;
 
+  document.getElementById("quizBox").style.display = "block";
+  document.getElementById("resultBox").style.display = "none";
+
   loadQuestion();
+}
+
+function restartQuiz() {
+  openQuiz();
 }
 
 function closeQuiz() {
   document.getElementById("quizModal").style.display = "none";
   clearInterval(timer);
-}
-function nextQuestion() {
-
-  current++;
-
-  if (current >= questions.length) {
-
-    clearInterval(timer);
-
-    document.getElementById("quizQuestion").style.display = "none";
-    document.getElementById("quizOptions").style.display = "none";
-    document.getElementById("timer").style.display = "none";
-
-    document.getElementById("resultBox").style.display = "block";
-    document.getElementById("finalScore").innerText =
-      "Your Score: " + score + " / " + questions.length;
-
-    return;
-  }
-
-  loadQuestion();
-}
-function restartQuiz() {
-
-  score = 0;
-  current = 0;
-
-  document.getElementById("resultBox").style.display = "none";
-
-  document.getElementById("quizQuestion").style.display = "block";
-  document.getElementById("quizOptions").style.display = "block";
-  document.getElementById("timer").style.display = "block";
-
-  loadQuestion();
 }

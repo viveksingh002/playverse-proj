@@ -160,37 +160,37 @@
         </div>
       </div>
 
-<div class="game-card">
-  <div class="game-card-thumb thumb-mem">🃏</div>
-  <div class="game-card-body">
-    <h3>Memory Match</h3>
-    <p>Flip cards and find pairs.</p>
-    <div class="game-card-footer">
-      <span class="difficulty diff-medium">Medium</span>
-      <button class="play-btn" onclick="openMemoryGame()">
-        Play →
-      </button>
-    </div>
-  </div>
-</div>
+      <div class="game-card">
+        <div class="game-card-thumb thumb-mem">🃏</div>
+        <div class="game-card-body">
+          <h3>Memory Match</h3>
+          <p>Flip cards and find pairs.</p>
+          <div class="game-card-footer">
+            <span class="difficulty diff-medium">Medium</span>
+            <button class="play-btn" onclick="openMemoryGame()">
+              Play →
+            </button>
+          </div>
+        </div>
+      </div>
 
-<!-- Memory Game Modal -->
-<div id="memoryModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeMemoryGame()">&times;</span>
+      <!-- Memory Game Modal -->
+      <div id="memoryModal" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="closeMemoryGame()">&times;</span>
 
-    <h2>🃏 Memory Match</h2>
+          <h2>🃏 Memory Match</h2>
 
-    <div id="memoryGame" class="memory-grid"></div>
-    <div class="memory-bottom"></div>
+          <div id="memoryGame" class="memory-grid"></div>
+          <div class="memory-bottom"></div>
 
-    <div id="memoryResult"></div>
+          <div id="memoryResult"></div>
 
-    <button class="play-btn" onclick="startMemoryGame()">
-      Restart Game
-    </button>
-  </div>
-</div>
+          <button class="play-btn" onclick="startMemoryGame()">
+            Restart Game
+          </button>
+        </div>
+      </div>
 
       <div class="game-card">
         <div class="game-card-thumb thumb-quiz">💡</div>
@@ -252,7 +252,7 @@
     </div>
   </section>
 
-   <!-- tic tac toe game -->
+  <!-- tic tac toe game -->
 
   <div id="tictoc" class="modal">
     <div class="modal-content">
@@ -313,46 +313,50 @@
     </div>
   </div>
 
-<!-- memory game -->
+  <!-- memory game -->
 
-<div id="memoryModal" class="modal">
-  <div class="modal-content">
+  <div id="memoryModal" class="modal">
+    <div class="modal-content">
 
-    <h2>🧠 Memory Match</h2>
-    <p>Flip cards and find pairs</p>
+      <h2>🧠 Memory Match</h2>
+      <p>Flip cards and find pairs</p>
 
-    <div id="memoryBoard" class="memory-board"></div>
+      <div id="memoryBoard" class="memory-board"></div>
 
-    <button onclick="startMemoryGame()" class="play-btn">Restart</button>
-    <button onclick="closeMemory()" class="play-btn" style="background:#ff4d8d;">Close</button>
+      <button onclick="startMemoryGame()" class="play-btn">Restart</button>
+      <button onclick="closeMemory()" class="play-btn" style="background:#ff4d8d;">Close</button>
 
+    </div>
   </div>
-</div>
-<!-- Quiz model -->
+  <!-- Quiz model -->
+  
 <div id="quizModal" class="modal">
 
   <div class="modal-content">
 
-    <h2>Quiz Game</h2>
+    <div id="quizBox">
 
-    <p>Time Left: <span id="timer">10</span> sec</p>
+      <h2>Quiz Game</h2>
 
-    <p id="quizQuestion">Loading...</p>
+      <p>Time Left: <span id="timer">10</span> sec</p>
 
-    <div id="quizOptions"></div>
+      <p id="quizQuestion"></p>
 
-  
+      <div id="quizOptions"></div>
 
-    <button onclick="nextQuestion()" class="play-btn">Next</button>
-    <button onclick="closeQuiz()" class="play-btn" style="background:#ff4d8d;">Close</button>
+      <button onclick="nextQuestion()" class="play-btn">Next</button>
+      <button onclick="closeQuiz()" class="play-btn" style="background:#ff4d8d;">Close</button>
 
-<div id="resultBox" style="display:none;">
-  <h2>Quiz Result</h2>
-  <p id="finalScore"></p>
+    </div>
 
-  <button onclick="restartQuiz()" class="play-btn">Play Again</button>
-  <button onclick="closeResult()" class="play-btn" style="background:#ff4d8d;">Close</button>
-</div>
+    <!-- RESULT BOX -->
+    <div id="resultBox" style="display:none; text-align:center;">
+      <h2 style="color:#00d4ff;">Quiz Result</h2>
+      <p id="finalScore"></p>
+
+      <button onclick="restartQuiz()" class="play-btn">Play Again</button>
+      <button onclick="closeQuiz()" class="play-btn" style="background:#ff4d8d;">Close</button>
+    </div>
 
   </div>
 
