@@ -264,29 +264,59 @@ function checkMatch() {
 
 const questions = [
   {
-    q: "What is the capital of India?",
-    options: ["Delhi", "Mumbai", "Kolkata", "Chennai"],
-    answer: "Delhi"
+    q: "What is the square root of 144?",
+    options: ["10", "12", "14", "16"],
+    answer: "12"
   },
   {
-    q: "Which planet is known as Red Planet?",
-    options: ["Earth", "Mars", "Jupiter", "Venus"],
-    answer: "Mars"
+    q: "Which gas is most abundant in Earth's atmosphere?",
+    options: ["Oxygen", "Carbon Dioxide", "Nitrogen", "Hydrogen"],
+    answer: "Nitrogen"
   },
   {
-    q: "Who invented JavaScript?",
-    options: ["Brendan Eich", "Bill Gates", "Elon Musk", "Steve Jobs"],
-    answer: "Brendan Eich"
+    q: "A train travels 60 km in 1 hour. How far in 5 hours?",
+    options: ["300 km", "250 km", "200 km", "150 km"],
+    answer: "300 km"
   },
   {
-    q: "HTML stands for?",
-    options: [
-      "Hyper Text Markup Language",
-      "High Text Machine Language",
-      "Hyper Transfer Mark Language",
-      "None"
-    ],
-    answer: "Hyper Text Markup Language"
+    q: "What is 15% of 200?",
+    options: ["20", "25", "30", "35"],
+    answer: "30"
+  },
+  {
+    q: "Find the next number: 2, 6, 12, 20, ?",
+    options: ["30", "28", "32", "24"],
+    answer: "30"
+  },
+  {
+    q: "Which organ purifies blood in human body?",
+    options: ["Heart", "Lungs", "Kidney", "Liver"],
+    answer: "Kidney"
+  },
+  {
+    q: "If a = 5 and b = 3, then a² + b² = ?",
+    options: ["34", "25", "30", "28"],
+    answer: "34"
+  },
+  {
+    q: "Speed = Distance / ?",
+    options: ["Time", "Mass", "Force", "Energy"],
+    answer: "Time"
+  },
+  {
+    q: "Which is the hardest natural substance?",
+    options: ["Gold", "Iron", "Diamond", "Quartz"],
+    answer: "Diamond"
+  },
+  {
+    q: "What is 9 × 8?",
+    options: ["72", "64", "81", "74"],
+    answer: "72"
+  },
+  {
+    q: "Which planet is closest to Sun?",
+    options: ["Venus", "Earth", "Mercury", "Mars"],
+    answer: "Mercury"
   }
 ];
 let current = 0;
