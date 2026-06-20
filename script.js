@@ -260,3 +260,108 @@ function checkMatch() {
     }, 800);
   }
 }
+
+
+
+const questions = [
+  {
+    q: "What is the capital of India?",
+    options: ["Delhi", "Mumbai", "Kolkata", "Chennai"],
+    answer: "Delhi"
+  },
+  {
+    q: "Which planet is known as Red Planet?",
+    options: ["Earth", "Mars", "Jupiter", "Venus"],
+    answer: "Mars"
+  },
+  {
+    q: "Who invented JavaScript?",
+    options: ["Brendan Eich", "Bill Gates", "Elon Musk", "Steve Jobs"],
+    answer: "Brendan Eich"
+  },
+  {
+    q: "HTML stands for?",
+    options: [
+      "Hyper Text Markup Language",
+      "High Text Machine Language",
+      "Hyper Transfer Mark Language",
+      "None"
+    ],
+    answer: "Hyper Text Markup Language"
+  }
+];
+
+let current = 0;
+let score = 0;
+let timer;
+let timeLeft = 10;
+
+function startTimer() {
+  clearInterval(timer);
+  timeLeft = 10;
+
+  document.getElementById("timer").innerText = timeLeft;
+
+  timer = setInterval(() => {
+    timeLeft--;
+
+    document.getElementById("timer").innerText = timeLeft;
+
+    if (timeLeft === 0) {
+      clearInterval(timer);
+      nextQuestion(); // auto move
+    }
+  }, 1000);
+}
+
+function loadQuestion() {
+  let q = questions[current];
+
+  document.getElementById("quizQuestion").innerText = q.q;
+
+  let optionsHTML = "";
+
+  q.options.forEach(opt => {
+    optionsHTML += `<button class="play-btn" onclick="checkAnswer('${opt}')">${opt}</button>`;
+  });
+
+  document.getElementById("quizOptions").innerHTML = optionsHTML;
+
+  startTimer();
+}
+
+function checkAnswer(selected) {
+  if (selected === questions[current].answer) {
+    score++;
+  }
+
+  nextQuestion();
+}
+
+function nextQuestion() {
+  current++;
+
+  if (current >= questions.length) {
+    clearInterval(timer);
+    alert("Quiz Finished! Score: " + score);
+
+    current = 0;
+    score = 0;
+    loadQuestion();
+    return;
+  }
+
+  loadQuestion();
+}
+
+function openQuiz() {
+  document.getElementById("quizModal").style.display = "flex";
+  current = 0;
+  score = 0;
+  loadQuestion();
+}
+
+function closeQuiz() {
+  document.getElementById("quizModal").style.display = "none";
+  clearInterval(timer);
+}

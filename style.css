@@ -736,3 +736,51 @@ footer {
     min-height: 25px;
     margin-bottom: 10px;
 }
+
+#quizModal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(6px);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+#quizModal .modal-content {
+  background: #131626;
+  padding: 22px;
+  border-radius: 16px;
+  width: 420px;
+  text-align: center;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+#quizQuestion {
+  margin: 15px 0;
+  font-size: 18px;
+  color: white;
+}
+
+#quizOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#quizOptions .play-btn {
+  width: 100%;
+  background: #1a1e30;
+  color: white;
+}
+
+#quizOptions .play-btn:hover {
+  background: #00d4ff;
+  color: black;
+}
+#timer {
+  color: #00d4ff;
+  font-weight: bold;
+  font-size: 18px;
+}

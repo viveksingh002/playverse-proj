@@ -199,7 +199,7 @@
           <p>Answer 10 general knowledge questions.</p>
           <div class="game-card-footer">
             <span class="difficulty diff-hard">Hard</span>
-            <button class="play-btn">Play →</button>
+            <button class="play-btn" onclick="openQuiz()">Play →</button>
           </div>
         </div>
       </div>
@@ -328,7 +328,27 @@
 
   </div>
 </div>
+<!-- Quiz model -->
+<div id="quizModal" class="modal">
 
+  <div class="modal-content">
+
+    <h2>Quiz Game</h2>
+
+    <p>Time Left: <span id="timer">10</span> sec</p>
+
+    <p id="quizQuestion">Loading...</p>
+
+    <div id="quizOptions"></div>
+
+    <p id="quizScore">Score: 0</p>
+
+    <button onclick="nextQuestion()" class="play-btn">Next</button>
+    <button onclick="closeQuiz()" class="play-btn" style="background:#ff4d8d;">Close</button>
+
+  </div>
+
+</div>
 
   <footer id="contact">
     <div class="footer-inner">
