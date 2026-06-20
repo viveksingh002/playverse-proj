@@ -279,11 +279,6 @@ const questions = [
     answer: "300 km"
   },
   {
-    q: "What is 15% of 200?",
-    options: ["20", "25", "30", "35"],
-    answer: "30"
-  },
-  {
     q: "Find the next number: 2, 6, 12, 20, ?",
     options: ["30", "28", "32", "24"],
     answer: "30"
