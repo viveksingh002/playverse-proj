@@ -764,3 +764,55 @@ footer {
   font-size: 18px;
   margin: 10px 0;
 }
+
+
+#guessInput {
+  width: 100%;
+  padding: 12px 14px;
+  margin: 12px 0;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: #1a1e30;
+  color: white;
+  font-size: 16px;
+  outline: none;
+  text-align: center;
+}
+
+#guessInput:focus {
+  border-color: #00d4ff;
+  box-shadow: 0 0 10px rgba(0,212,255,0.3);
+}
+
+#hint {
+  margin-top: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #00d4ff;
+  text-align: center;
+}
+
+#attempts {
+  color: #ff4d8d;
+  font-weight: bold;
+}
+
+/* Modal content improvement */
+.modal-content {
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  animation: pop 0.25s ease-in-out;
+}
+
+/* Smooth popup animation */
+@keyframes pop {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

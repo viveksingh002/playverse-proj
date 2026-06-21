@@ -203,7 +203,7 @@
           </div>
         </div>
       </div>
-
+      
       <div class="game-card">
         <div class="game-card-thumb thumb-num">🎯</div>
         <div class="game-card-body">
@@ -211,10 +211,11 @@
           <p>Guess the hidden number.</p>
           <div class="game-card-footer">
             <span class="difficulty diff-easy">Easy</span>
-            <button class="play-btn">Play →</button>
+            <button class="play-btn"  onclick="openGuess()">Play →</button>
           </div>
         </div>
       </div>
+
 
     </div>
   </section>
@@ -329,38 +330,62 @@
     </div>
   </div>
   <!-- Quiz model -->
-  
-<div id="quizModal" class="modal">
 
-  <div class="modal-content">
+  <div id="quizModal" class="modal">
 
-    <div id="quizBox">
+    <div class="modal-content">
 
-      <h2>Quiz Game</h2>
+      <div id="quizBox">
 
-      <p>Time Left: <span id="timer">10</span> sec</p>
+        <!-- quiz game -->
 
-      <p id="quizQuestion"></p>
+        <h2>Quiz Game</h2>
 
-      <div id="quizOptions"></div>
+        <p>Time Left: <span id="timer">10</span> sec</p>
 
-      <button onclick="nextQuestion()" class="play-btn">Next</button>
-      <button onclick="closeQuiz()" class="play-btn" style="background:#ff4d8d;">Close</button>
+        <p id="quizQuestion"></p>
 
-    </div>
+        <div id="quizOptions"></div>
 
-    <!-- RESULT BOX -->
-    <div id="resultBox" style="display:none; text-align:center;">
-      <h2 style="color:#00d4ff;">Quiz Result</h2>
-      <p id="finalScore"></p>
+        <button onclick="nextQuestion()" class="play-btn">Next</button>
+        <button onclick="closeQuiz()" class="play-btn" style="background:#ff4d8d;">Close</button>
 
-      <button onclick="restartQuiz()" class="play-btn">Play Again</button>
-      <button onclick="closeQuiz()" class="play-btn" style="background:#ff4d8d;">Close</button>
+      </div>
+
+      <div id="resultBox" style="display:none; text-align:center;">
+        <h2 style="color:#00d4ff;">Quiz Result</h2>
+        <p id="finalScore"></p>
+
+        <button onclick="restartQuiz()" class="play-btn">Play Again</button>
+        <button onclick="closeQuiz()" class="play-btn" style="background:#ff4d8d;">Close</button>
+      </div>
+
     </div>
 
   </div>
 
-</div>
+  <!-- no. guessing game -->
+
+  <div id="guessModal" class="modal">
+
+    <div class="modal-content">
+
+      <h2>Number Guessing</h2>
+
+      <input id="guessInput" type="number" placeholder="Enter number" />
+
+      <button class="play-btn" onclick="checkGuess()">Guess</button>
+
+      <p id="hint"></p>
+
+      <p>Attempts: <span id="attempts">0</span></p>
+
+      <button class="play-btn" onclick="resetGame()">Restart</button>
+      <button class="play-btn" onclick="closeGuess()">Close</button>
+
+    </div>
+
+  </div>
 
   <footer id="contact">
     <div class="footer-inner">

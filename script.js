@@ -398,3 +398,54 @@ function closeQuiz() {
   document.getElementById("quizModal").style.display = "none";
   clearInterval(timer);
 }
+
+// Number gussing game add
+
+let secretNumber;
+let attempts = 0;
+
+function initGame() {
+  secretNumber = Math.floor(Math.random() * 100) + 1;
+  attempts = 0;
+
+  document.getElementById("attempts").innerText = attempts;
+  document.getElementById("hint").innerText = "";
+  document.getElementById("guessInput").value = "";
+}
+
+function openGuess() {
+  document.getElementById("guessModal").style.display = "flex";
+  initGame();
+}
+
+function checkGuess() {
+  let input = document.getElementById("guessInput").value;
+
+  if (input === "") return;
+
+  let userGuess = Number(input);
+
+  attempts++;
+  document.getElementById("attempts").innerText = attempts;
+
+  if (userGuess === secretNumber) {
+    document.getElementById("hint").innerText =
+      `🎉 Correct! You guessed it in ${attempts} attempts`;
+
+  } else if (userGuess > secretNumber) {
+    document.getElementById("hint").innerText =
+      "📉 Too High! Try smaller number";
+
+  } else {
+    document.getElementById("hint").innerText =
+      "📈 Too Low! Try bigger number";
+  }
+}
+
+function resetGame() {
+  initGame();
+}
+
+function closeGuess() {
+  document.getElementById("guessModal").style.display = "none";
+}
