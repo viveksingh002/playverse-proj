@@ -59,7 +59,6 @@ This project demonstrates how multiple independent games can be efficiently inte
 
 ---
 
----
 
 ## 🛠️ Tech Stack
 
@@ -91,7 +90,6 @@ playverse-proj/
 <p align="center">
   <img src="assets/Screenshot2.png" width="650"/>
 </p>
----
 
 ## 💡 Key Learnings
 
