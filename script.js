@@ -401,44 +401,57 @@ function closeQuiz() {
 
 // Number gussing game add
 
+
 let secretNumber;
 let attempts = 0;
-
-function initGame() {
-  secretNumber = Math.floor(Math.random() * 100) + 1;
-  attempts = 0;
-
-  document.getElementById("attempts").innerText = attempts;
-  document.getElementById("hint").innerText = "";
-  document.getElementById("guessInput").value = "";
-}
 
 function openGuess() {
   document.getElementById("guessModal").style.display = "flex";
   initGame();
 }
 
+function initGame() {
+  secretNumber = Math.floor(Math.random() * 100) + 1;
+  attempts = 0;
+
+  const attemptsEl = document.getElementById("attempts");
+  const hintEl = document.getElementById("hint");
+  const inputEl = document.getElementById("guessInput");
+
+  if (attemptsEl) attemptsEl.innerText = "0";
+  if (hintEl) hintEl.innerText = "";
+  if (inputEl) inputEl.value = "";
+}
+
 function checkGuess() {
-  let input = document.getElementById("guessInput").value;
+  const inputEl = document.getElementById("guessInput");
+  const hintEl = document.getElementById("hint");
+  const attemptsEl = document.getElementById("attempts");
 
-  if (input === "") return;
+  if (!inputEl || inputEl.value === "") return;
 
-  let userGuess = Number(input);
+  let userGuess = Number(inputEl.value);
 
   attempts++;
-  document.getElementById("attempts").innerText = attempts;
+  if (attemptsEl) attemptsEl.innerText = attempts;
 
   if (userGuess === secretNumber) {
-    document.getElementById("hint").innerText =
-      `🎉 Correct! You guessed it in ${attempts} attempts`;
 
-  } else if (userGuess > secretNumber) {
-    document.getElementById("hint").innerText =
-      "📉 Too High! Try smaller number";
+    if (hintEl) {
+      hintEl.innerText = `🎉 You Win! Number was ${secretNumber}`;
+    }
 
-  } else {
-    document.getElementById("hint").innerText =
-      "📈 Too Low! Try bigger number";
+    setTimeout(() => {
+      initGame();
+      if (hintEl) hintEl.innerText = "🎯 New number generated!";
+    }, 1200);
+
+  } 
+  else if (userGuess > secretNumber) {
+    if (hintEl) hintEl.innerText = "📉 Too High!";
+  } 
+  else {
+    if (hintEl) hintEl.innerText = "📈 Too Low!";
   }
 }
 
