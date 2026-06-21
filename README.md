@@ -1,4 +1,3 @@
-
 # 🎮 PlayVerse
 
 <p align="center">
@@ -21,16 +20,18 @@
 
 ## 📌 Overview
 
-**PlayVerse** is a modern, interactive **mini-games arcade web app** built using pure **HTML, CSS, and JavaScript**.
+**PlayVerse** is a modern, interactive **browser-based mini-games arcade platform** built using pure **HTML, CSS, and JavaScript (ES6+)**.
 
-It focuses on strengthening core frontend skills like:
+It delivers a seamless and engaging gaming experience directly in the browser without requiring any installation, login, or external dependencies.
 
-- DOM manipulation
-- Game logic building
-- UI/UX design
-- Event handling
+This project was developed with a strong focus on enhancing core frontend engineering skills, including:
 
-This project demonstrates how multiple browser games can be combined into a single smooth gaming platform without any frameworks.
+- Advanced DOM manipulation and dynamic UI rendering
+- Interactive game logic architecture and state management
+- Modern UI/UX design principles with responsive layouts
+- Event-driven programming and real-time user interactions
+
+This project demonstrates how multiple independent games can be efficiently integrated into a single cohesive, high-performance web application without using any frameworks or libraries.
 
 ---
 
@@ -58,13 +59,16 @@ This project demonstrates how multiple browser games can be combined into a sing
 
 ---
 
+---
+
 ## 🛠️ Tech Stack
 
-- HTML5
-- CSS3 (Flexbox + Grid + Animations)
-- Vanilla JavaScript (Game Logic + DOM)
-
----
+- **HTML5** – Semantic structure for building accessible and well-organized web interfaces
+- **CSS3** – Modern styling with Flexbox, CSS Grid, animations, and responsive design principles
+- **JavaScript (ES6+)** – Core game logic, DOM manipulation, and interactive user experience handling
+- **Responsive Web Design** – Fully optimized for mobile, tablet, and desktop devices
+- **UI/UX Design Principles** – Focused on clean layout, intuitive navigation, and engaging user interaction
+- **Git & GitHub** – Version control, collaboration workflow, and project deployment using GitHub Pages
 
 ## 📂 Project Structure
 
@@ -79,14 +83,13 @@ playverse-proj/
 │── README.md
 ```
 
-
 ## 📸 Preview
 
 <p align="center">
-  <img src="assets/screenshot1.png" width="650"/>
+  <img src="assets/Screenshot1.png" width="650"/>
 </p>
 <p align="center">
-  <img src="assets/screenshot2.png" width="650"/>
+  <img src="assets/Screenshot2.png" width="650"/>
 </p>
 ---
 
