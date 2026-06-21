@@ -796,6 +796,9 @@ footer {
   color: #ff4d8d;
   font-weight: bold;
 }
+.attempt{
+    margin-bottom: 10px;
+}
 
 /* Modal content improvement */
 .modal-content {
