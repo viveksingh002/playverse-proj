@@ -214,7 +214,6 @@
         </div>
       </div>
 
-
       <div class="game-card">
         <div class="game-card-thumb thumb-num">🎯</div>
         <div class="game-card-body">
@@ -227,36 +226,34 @@
         </div>
       </div>
 
+<div class="game-card">
+  
+  <div class="game-card-thumb thumb-snake">
+    🐍
+  </div>
 
-      <div class="game-card">
+  <div class="game-card-body">
 
-        <div class="game-card-thumb thumb-snake">
-          🐍
-        </div>
+    <h3>Snake Game</h3>
 
-        <div class="game-card-body">
+    <p>Control the snake and eat food to grow longer.</p>
 
-          <h3>Snake Game</h3>
+    <div class="game-card-footer">
 
-          <p>Control the snake and eat food to grow longer.</p>
+      <span class="difficulty diff-easy">Easy</span>
 
-          <div class="game-card-footer">
-
-            <span class="difficulty diff-easy">Easy</span>
-
-            <button class="play-btn" onclick="openSnake()">
-              Play →
-            </button>
-
-          </div>
-
-        </div>
-
-      </div>
-
+      <button class="play-btn" onclick="openSnake()">
+        Play →
+      </button>
 
     </div>
 
+  </div>
+
+</div>
+
+    </div>
+    
   </section>
 
   <section class="how-section" id="how">
@@ -425,6 +422,29 @@
     </div>
 
   </div>
+
+<!-- snake gamw -->
+
+<!-- GAME CARD BUTTON -->
+<button class="play-btn" onclick="openSnake()">Play →</button>
+
+<!-- SNAKE MODAL -->
+<div id="snakeModal" class="modal">
+
+  <div class="modal-content">
+
+    <h2>Snake Game 🐍</h2>
+
+    <canvas id="snakeBoard" width="300" height="300"></canvas>
+
+    <p>Score: <span id="snakeScore">0</span></p>
+
+    <button class="play-btn" onclick="startSnake()">Restart</button>
+    <button class="play-btn" onclick="closeSnake()">Close</button>
+
+  </div>
+
+</div>
 
   <footer id="contact">
     <div class="footer-inner">

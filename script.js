@@ -462,3 +462,117 @@ function resetGame() {
 function closeGuess() {
   document.getElementById("guessModal").style.display = "none";
 }
+
+
+
+let canvas, ctx;
+let box = 15;
+
+let snake = [];
+let direction = "RIGHT";
+
+let food = {};
+let score = 0;
+let gameInterval;
+
+function openSnake() {
+  document.getElementById("snakeModal").style.display = "flex";
+  startSnake();
+}
+
+function closeSnake() {
+  document.getElementById("snakeModal").style.display = "none";
+  clearInterval(gameInterval);
+}
+
+function startSnake() {
+  canvas = document.getElementById("snakeBoard");
+  ctx = canvas.getContext("2d");
+
+  snake = [{ x: 9 * box, y: 9 * box }];
+  direction = "RIGHT";
+  score = 0;
+
+  document.getElementById("snakeScore").innerText = score;
+
+  generateFood();
+
+  document.onkeydown = changeDirection;
+
+  clearInterval(gameInterval);
+  gameInterval = setInterval(drawGame, 120);
+}
+
+function generateFood() {
+  food = {
+    x: Math.floor(Math.random() * 20) * box,
+    y: Math.floor(Math.random() * 20) * box
+  };
+}
+
+function changeDirection(event) {
+  let key = event.key;
+
+  if (key === "ArrowLeft" && direction !== "RIGHT") direction = "LEFT";
+  else if (key === "ArrowUp" && direction !== "DOWN") direction = "UP";
+  else if (key === "ArrowRight" && direction !== "LEFT") direction = "RIGHT";
+  else if (key === "ArrowDown" && direction !== "UP") direction = "DOWN";
+}
+
+function drawGame() {
+  ctx.fillStyle = "#1a1e30";
+  ctx.fillRect(0, 0, 300, 300);
+
+  // snake
+  for (let i = 0; i < snake.length; i++) {
+    ctx.fillStyle = i === 0 ? "#00d4ff" : "#ffffff";
+    ctx.fillRect(snake[i].x, snake[i].y, box, box);
+  }
+
+  // food
+  ctx.fillStyle = "#ff4d8d";
+  ctx.fillRect(food.x, food.y, box, box);
+
+  let headX = snake[0].x;
+  let headY = snake[0].y;
+
+  if (direction === "LEFT") headX -= box;
+  if (direction === "RIGHT") headX += box;
+  if (direction === "UP") headY -= box;
+  if (direction === "DOWN") headY += box;
+
+  // eat food
+  if (headX === food.x && headY === food.y) {
+    score++;
+    document.getElementById("snakeScore").innerText = score;
+    generateFood();
+  } else {
+    snake.pop();
+  }
+
+  let newHead = { x: headX, y: headY };
+
+  // game over conditions
+  if (
+    headX < 0 ||
+    headY < 0 ||
+    headX >= 300 ||
+    headY >= 300 ||
+    collision(newHead, snake)
+  ) {
+    clearInterval(gameInterval);
+    alert("Game Over! Score: " + score);
+    return;
+  }
+
+  snake.unshift(newHead);
+}
+
+function collision(head, array) {
+  for (let i = 0; i < array.length; i++) {
+    if (head.x === array[i].x && head.y === array[i].y) {
+      return true;
+    }
+  }
+  return false;
+}
