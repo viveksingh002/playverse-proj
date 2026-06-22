@@ -463,3 +463,87 @@ function closeGuess() {
   document.getElementById("guessModal").style.display = "none";
 }
 
+
+const SnakeGame = (() => {
+
+  let canvas, ctx;
+  let box = 15;
+
+  let snake, food, score, loop;
+
+  function openSnake() {
+    document.getElementById("snake-modal").style.display = "flex";
+    start();
+  }
+
+  function closeSnake() {
+    document.getElementById("snake-modal").style.display = "none";
+    clearInterval(loop);
+  }
+
+  function start() {
+    canvas = document.getElementById("snake-canvas");
+    ctx = canvas.getContext("2d");
+
+    snake = [{ x: 100, y: 100 }];
+    score = 0;
+
+    document.getElementById("snake-score").innerText = score;
+
+    food = createFood();
+
+    clearInterval(loop);
+    loop = setInterval(update, 150);
+  }
+
+  function createFood() {
+    return {
+      x: Math.floor(Math.random() * 20) * box,
+      y: Math.floor(Math.random() * 20) * box
+    };
+  }
+
+  function update() {
+
+    let head = {
+      x: snake[0].x + box,
+      y: snake[0].y
+    };
+
+    snake.unshift(head);
+
+    if (head.x === food.x && head.y === food.y) {
+      score++;
+      document.getElementById("snake-score").innerText = score;
+      food = createFood();
+    } else {
+      snake.pop();
+    }
+
+    draw();
+
+    if (head.x < 0 || head.y < 0 || head.x >= 300 || head.y >= 300) {
+      clearInterval(loop);
+      alert("Game Over! Score: " + score);
+    }
+  }
+
+  function draw() {
+    ctx.fillStyle = "#0f1220";
+    ctx.fillRect(0, 0, 300, 300);
+
+    snake.forEach((s, i) => {
+      ctx.fillStyle = i === 0 ? "#00d4ff" : "#fff";
+      ctx.fillRect(s.x, s.y, box, box);
+    });
+
+    ctx.fillStyle = "#ff4d8d";
+    ctx.fillRect(food.x, food.y, box, box);
+  }
+
+  return {
+    openSnake,
+    closeSnake
+  };
+
+})();
