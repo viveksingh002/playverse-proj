@@ -820,76 +820,29 @@ footer {
   }
 }
 
-
-.game-card {
-  background: #1a1e30;
-  border-radius: 16px;
-  overflow: hidden;
-  width: 240px;
-  transition: 0.3s ease;
-  border: 1px solid rgba(255,255,255,0.08);
-}
-
-.game-card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(0, 212, 255, 0.4);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-}
-
-.game-card-thumb {
-  height: 120px;
-  display: flex;
-  align-items: center;
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
   justify-content: center;
-  font-size: 50px;
+  align-items: center;
+  z-index: 999;
 }
 
-.thumb-snake {
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-}
-
-.game-card-body {
-  padding: 15px;
+.modal-content {
+  background: #1a1e30;
+  padding: 20px;
+  border-radius: 16px;
+  text-align: center;
+  width: 340px;
   color: white;
 }
 
-.game-card-body h3 {
-  margin: 0;
-  font-size: 18px;
-}
-
-.game-card-body p {
-  font-size: 13px;
-  opacity: 0.7;
-  margin: 8px 0 12px;
-}
-
-.game-card-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.play-btn {
-  padding: 6px 12px;
-  border: none;
-  border-radius: 8px;
-  background: #00d4ff;
-  color: black;
-  cursor: pointer;
-  font-weight: bold;
-  transition: 0.2s;
-}
-
-.play-btn:hover {
-  background: #00b8e6;
-  transform: scale(1.05);
-}
-
-.diff-easy {
-  background: #00c896;
-  color: black;
-  padding: 3px 10px;
-  border-radius: 12px;
-  font-size: 12px;
+#snakeBoard {
+  background: #0f1220;
+  border: 2px solid #00d4ff;
+  border-radius: 10px;
+  display: block;
+  margin: 10px auto;
 }
