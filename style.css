@@ -820,17 +820,18 @@ footer {
   }
 }
 
-.modal {
+
+.snake-modal {
   display: none;
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.7);
   justify-content: center;
   align-items: center;
-  z-index: 999;
+  z-index: 9999;
 }
 
-.modal-content {
+.snake-content {
   background: #1a1e30;
   padding: 20px;
   border-radius: 16px;
@@ -839,10 +840,33 @@ footer {
   color: white;
 }
 
-#snakeBoard {
+#snake-canvas {
   background: #0f1220;
   border: 2px solid #00d4ff;
   border-radius: 10px;
   display: block;
   margin: 10px auto;
+}
+
+.snake-btn {
+  margin: 5px;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  background: #00d4ff;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.snake-btn:hover {
+  background: #00b8e6;
+}
+
+.snake-btn.close {
+  background: #ff4d8d;
+}
+
+.snake-btn.close:hover {
+  background: #ff2d7a;
 }

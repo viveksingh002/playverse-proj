@@ -176,13 +176,13 @@
 
 <div class="game-card">
 
-  <div class="game-card-thumb thumb-snake">🐍</div>
+  <div class="game-card-thumb">🐍</div>
 
   <div class="game-card-body">
 
     <h3>Snake Game</h3>
 
-    <p>Control the snake and eat food to grow longer.</p>
+    <p>Control snake, eat food & grow longer.</p>
 
     <div class="game-card-footer">
 
@@ -410,18 +410,18 @@
     </div>
 
   </div>
-<div id="snakeModal" class="modal">
+<div id="snake-modal" class="snake-modal">
 
-  <div class="modal-content">
+  <div class="snake-content">
 
     <h2>Snake Game 🐍</h2>
 
-    <canvas id="snakeBoard" width="300" height="300"></canvas>
+    <canvas id="snake-canvas" width="300" height="300"></canvas>
 
-    <p>Score: <span id="snakeScore">0</span></p>
+    <p>Score: <span id="snake-score">0</span></p>
 
-    <button class="play-btn" onclick="startSnake()">Restart</button>
-    <button class="play-btn" onclick="closeSnake()">Close</button>
+    <button class="snake-btn" onclick="startSnake()">Restart</button>
+    <button class="snake-btn close" onclick="closeSnake()">Close</button>
 
   </div>
 

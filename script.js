@@ -462,3 +462,4 @@ function resetGame() {
 function closeGuess() {
   document.getElementById("guessModal").style.display = "none";
 }
+
