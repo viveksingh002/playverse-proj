@@ -466,7 +466,6 @@ function closeGuess() {
 
 
 
-
 const SnakeGame = (() => {
 
   let canvas, ctx;
@@ -478,21 +477,21 @@ const SnakeGame = (() => {
   let loop = null;
   let direction = "RIGHT";
 
+  let running = false;
+
   function openSnake() {
     document.getElementById("snake-modal").style.display = "flex";
-    init();
+    startGame();
   }
 
   function closeSnake() {
     document.getElementById("snake-modal").style.display = "none";
-
-    clearInterval(loop);
-    loop = null;
-
-    document.removeEventListener("keydown", control);
+    stopGame();
   }
 
-  function init() {
+  function startGame() {
+    stopGame();
+
     canvas = document.getElementById("snake-canvas");
     ctx = canvas.getContext("2d");
 
@@ -502,23 +501,41 @@ const SnakeGame = (() => {
 
     document.getElementById("snake-score").innerText = score;
 
-    food = createFood();
+    food = generateFood();
 
-    clearInterval(loop);
+    running = true;
+
     loop = setInterval(update, 120);
 
-    document.removeEventListener("keydown", control);
-    document.addEventListener("keydown", control);
+    window.removeEventListener("keydown", control);
+    window.addEventListener("keydown", control);
+  }
+
+  function stopGame() {
+    running = false;
+
+    if (loop) {
+      clearInterval(loop);
+      loop = null;
+    }
+
+    window.removeEventListener("keydown", control);
+  }
+
+  function restart() {
+    startGame();
   }
 
   function control(e) {
+    if (!running) return;
+
     if (e.key === "ArrowLeft" && direction !== "RIGHT") direction = "LEFT";
     else if (e.key === "ArrowRight" && direction !== "LEFT") direction = "RIGHT";
     else if (e.key === "ArrowUp" && direction !== "DOWN") direction = "UP";
     else if (e.key === "ArrowDown" && direction !== "UP") direction = "DOWN";
   }
 
-  function createFood() {
+  function generateFood() {
     return {
       x: Math.floor(Math.random() * (300 / box)) * box,
       y: Math.floor(Math.random() * (300 / box)) * box
@@ -526,6 +543,8 @@ const SnakeGame = (() => {
   }
 
   function update() {
+
+    if (!running) return;
 
     let head = { x: snake[0].x, y: snake[0].y };
 
@@ -539,16 +558,15 @@ const SnakeGame = (() => {
     if (head.x === food.x && head.y === food.y) {
       score++;
       document.getElementById("snake-score").innerText = score;
-      food = createFood();
+      food = generateFood();
     } else {
       snake.pop();
     }
 
     draw();
 
-    if (isGameOver(head)) {
-      clearInterval(loop);
-      loop = null;
+    if (checkGameOver(head)) {
+      stopGame();
       alert("Game Over! Score: " + score);
     }
   }
@@ -566,7 +584,7 @@ const SnakeGame = (() => {
     ctx.fillRect(food.x, food.y, box, box);
   }
 
-  function isGameOver(head) {
+  function checkGameOver(head) {
 
     if (
       head.x < 0 ||
@@ -586,7 +604,8 @@ const SnakeGame = (() => {
 
   return {
     openSnake,
-    closeSnake
+    closeSnake,
+    restart
   };
 
 })();
