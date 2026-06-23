@@ -464,30 +464,39 @@ function closeGuess() {
 }
 
 
+
+
+
 const SnakeGame = (() => {
 
   let canvas, ctx;
   let box = 15;
 
-  let snake, food, score, loop;
-  let direction;
+  let snake = [];
+  let food = {};
+  let score = 0;
+  let loop = null;
+  let direction = "RIGHT";
 
   function openSnake() {
     document.getElementById("snake-modal").style.display = "flex";
-    start();
+    init();
   }
 
   function closeSnake() {
     document.getElementById("snake-modal").style.display = "none";
+
     clearInterval(loop);
+    loop = null;
+
     document.removeEventListener("keydown", control);
   }
 
-  function start() {
+  function init() {
     canvas = document.getElementById("snake-canvas");
     ctx = canvas.getContext("2d");
 
-    snake = [{ x: 100, y: 100 }];
+    snake = [{ x: 120, y: 120 }];
     score = 0;
     direction = "RIGHT";
 
@@ -496,7 +505,7 @@ const SnakeGame = (() => {
     food = createFood();
 
     clearInterval(loop);
-    loop = setInterval(update, 150);
+    loop = setInterval(update, 120);
 
     document.removeEventListener("keydown", control);
     document.addEventListener("keydown", control);
@@ -511,12 +520,13 @@ const SnakeGame = (() => {
 
   function createFood() {
     return {
-      x: Math.floor(Math.random() * 20) * box,
-      y: Math.floor(Math.random() * 20) * box
+      x: Math.floor(Math.random() * (300 / box)) * box,
+      y: Math.floor(Math.random() * (300 / box)) * box
     };
   }
 
   function update() {
+
     let head = { x: snake[0].x, y: snake[0].y };
 
     if (direction === "RIGHT") head.x += box;
@@ -536,8 +546,9 @@ const SnakeGame = (() => {
 
     draw();
 
-    if (head.x < 0 || head.y < 0 || head.x >= 300 || head.y >= 300) {
+    if (isGameOver(head)) {
       clearInterval(loop);
+      loop = null;
       alert("Game Over! Score: " + score);
     }
   }
@@ -553,6 +564,24 @@ const SnakeGame = (() => {
 
     ctx.fillStyle = "#ff4d8d";
     ctx.fillRect(food.x, food.y, box, box);
+  }
+
+  function isGameOver(head) {
+
+    if (
+      head.x < 0 ||
+      head.y < 0 ||
+      head.x >= 300 ||
+      head.y >= 300
+    ) return true;
+
+    for (let i = 1; i < snake.length; i++) {
+      if (snake[i].x === head.x && snake[i].y === head.y) {
+        return true;
+      }
+    }
+
+    return false;
   }
 
   return {
