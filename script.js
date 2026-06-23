@@ -547,7 +547,7 @@ const SnakeGame = (() => {
     ctx.fillRect(0, 0, 300, 300);
 
     snake.forEach((s, i) => {
-      ctx.fillStyle = i === 0 ? "#00d4ff" : "#fff";
+      ctx.fillStyle = i === 0 ? "#00d4ff" : "#ffffff";
       ctx.fillRect(s.x, s.y, box, box);
     });
 
