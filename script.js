@@ -470,6 +470,7 @@ const SnakeGame = (() => {
   let box = 15;
 
   let snake, food, score, loop;
+  let direction;
 
   function openSnake() {
     document.getElementById("snake-modal").style.display = "flex";
@@ -479,6 +480,7 @@ const SnakeGame = (() => {
   function closeSnake() {
     document.getElementById("snake-modal").style.display = "none";
     clearInterval(loop);
+    document.removeEventListener("keydown", control);
   }
 
   function start() {
@@ -487,6 +489,7 @@ const SnakeGame = (() => {
 
     snake = [{ x: 100, y: 100 }];
     score = 0;
+    direction = "RIGHT";
 
     document.getElementById("snake-score").innerText = score;
 
@@ -494,6 +497,16 @@ const SnakeGame = (() => {
 
     clearInterval(loop);
     loop = setInterval(update, 150);
+
+    document.removeEventListener("keydown", control);
+    document.addEventListener("keydown", control);
+  }
+
+  function control(e) {
+    if (e.key === "ArrowLeft" && direction !== "RIGHT") direction = "LEFT";
+    else if (e.key === "ArrowRight" && direction !== "LEFT") direction = "RIGHT";
+    else if (e.key === "ArrowUp" && direction !== "DOWN") direction = "UP";
+    else if (e.key === "ArrowDown" && direction !== "UP") direction = "DOWN";
   }
 
   function createFood() {
@@ -504,11 +517,12 @@ const SnakeGame = (() => {
   }
 
   function update() {
+    let head = { x: snake[0].x, y: snake[0].y };
 
-    let head = {
-      x: snake[0].x + box,
-      y: snake[0].y
-    };
+    if (direction === "RIGHT") head.x += box;
+    if (direction === "LEFT") head.x -= box;
+    if (direction === "UP") head.y -= box;
+    if (direction === "DOWN") head.y += box;
 
     snake.unshift(head);
 
