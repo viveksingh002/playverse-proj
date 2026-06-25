@@ -466,72 +466,70 @@ function closeGuess() {
 
 
 const SnakeGame = (() => {
- 
-  let canvas, ctx;
-  const box = 15;
-  const COLS = 20; 
-  
-  const ROWS = 20; 
- 
-  let snake = [];
-  let food = {};
-  let score = 0;
-  let loop = null;
-  let direction = "RIGHT";
-  let nextDirection = "RIGHT"; 
-  let running = false;
 
- 
+  let canvas, ctx;
+  const box  = 15;
+  const COLS = 20;
+  const ROWS = 20;
+
+  let snake         = [];
+  let food          = {};
+  let score         = 0;
+  let loop          = null;
+  let direction     = "RIGHT";
+  let nextDirection = "RIGHT";
+  let running       = false;
+
   function openSnake() {
     document.getElementById("snake-modal").style.display = "flex";
     startGame();
   }
- 
+
   function closeSnake() {
     document.getElementById("snake-modal").style.display = "none";
     stopGame();
   }
- 
-  function restart() {
+
+  function startSnake() {
+    stopGame();
     startGame();
   }
- 
- 
+
   function startGame() {
-    stopGame();
- 
     canvas = document.getElementById("snake-canvas");
     ctx    = canvas.getContext("2d");
- 
-    snake         = [{ x: 9 * box, y: 9 * box }]; 
+
+    snake         = [{ x: 9 * box, y: 9 * box }];
     score         = 0;
     direction     = "RIGHT";
     nextDirection = "RIGHT";
- 
+
     document.getElementById("snake-score").innerText = 0;
- 
+
     food    = generateFood();
     running = true;
     loop    = setInterval(update, 120);
- 
+
     window.removeEventListener("keydown", control);
     window.addEventListener("keydown", control);
   }
- 
+
   function stopGame() {
     running = false;
-    if (loop) { clearInterval(loop); loop = null; }
+    if (loop) {
+      clearInterval(loop);
+      loop = null;
+    }
     window.removeEventListener("keydown", control);
   }
- 
- 
+
   function control(e) {
     if (!running) return;
- 
-    if (["ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].includes(e.key)) {
+
+    if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(e.key)) {
       e.preventDefault();
     }
- 
+
     switch (e.key) {
       case "ArrowLeft":  if (direction !== "RIGHT") nextDirection = "LEFT";  break;
       case "ArrowRight": if (direction !== "LEFT")  nextDirection = "RIGHT"; break;
@@ -539,14 +537,13 @@ const SnakeGame = (() => {
       case "ArrowDown":  if (direction !== "UP")    nextDirection = "DOWN";  break;
     }
   }
- 
+
   function setDirection(dir) {
     if (!running) return;
-    const opposites = { LEFT:"RIGHT", RIGHT:"LEFT", UP:"DOWN", DOWN:"UP" };
+    const opposites = { LEFT: "RIGHT", RIGHT: "LEFT", UP: "DOWN", DOWN: "UP" };
     if (dir !== opposites[direction]) nextDirection = dir;
   }
- 
- 
+
   function generateFood() {
     let pos;
     do {
@@ -557,29 +554,28 @@ const SnakeGame = (() => {
     } while (snake.some(s => s.x === pos.x && s.y === pos.y));
     return pos;
   }
- 
- 
+
   function update() {
     if (!running) return;
- 
+
     direction = nextDirection;
- 
+
     const head = { x: snake[0].x, y: snake[0].y };
- 
+
     if (direction === "RIGHT") head.x += box;
     if (direction === "LEFT")  head.x -= box;
     if (direction === "UP")    head.y -= box;
     if (direction === "DOWN")  head.y += box;
- 
+
     if (checkGameOver(head)) {
-      draw();             
+      draw();
       drawGameOver();
       stopGame();
       return;
     }
- 
+
     snake.unshift(head);
- 
+
     if (head.x === food.x && head.y === food.y) {
       score++;
       document.getElementById("snake-score").innerText = score;
@@ -587,68 +583,57 @@ const SnakeGame = (() => {
     } else {
       snake.pop();
     }
- 
+
     draw();
   }
- 
 
- 
   function draw() {
-  
     ctx.fillStyle = "#0f1220";
     ctx.fillRect(0, 0, COLS * box, ROWS * box);
- 
+
     snake.forEach((s, i) => {
       ctx.fillStyle = i === 0 ? "#00d4ff" : "#ffffff";
       ctx.beginPath();
       ctx.roundRect(s.x + 1, s.y + 1, box - 2, box - 2, 3);
       ctx.fill();
     });
- 
 
     ctx.fillStyle = "#ff4d8d";
     ctx.beginPath();
     ctx.roundRect(food.x + 1, food.y + 1, box - 2, box - 2, 4);
     ctx.fill();
   }
- 
+
   function drawGameOver() {
-    const W = COLS * box, H = ROWS * box;
+    const W = COLS * box;
+    const H = ROWS * box;
 
     ctx.fillStyle = "rgba(0, 0, 0, 0.55)";
     ctx.fillRect(0, 0, W, H);
- 
-  
+
     ctx.fillStyle = "#ff4d8d";
     ctx.font      = "bold 22px monospace";
     ctx.textAlign = "center";
     ctx.fillText("GAME OVER", W / 2, H / 2 - 14);
- 
-  
+
     ctx.fillStyle = "#ffffff";
     ctx.font      = "16px monospace";
     ctx.fillText(`Score: ${score}`, W / 2, H / 2 + 12);
- 
+
     ctx.fillStyle = "#aaaaaa";
     ctx.font      = "13px monospace";
     ctx.fillText("Press Restart to play again", W / 2, H / 2 + 36);
- 
-    ctx.textAlign = "left"; // reset
-  }
- 
 
- 
+    ctx.textAlign = "left";
+  }
+
   function checkGameOver(head) {
-    // Wall
     if (head.x < 0 || head.y < 0 || head.x >= COLS * box || head.y >= ROWS * box) {
       return true;
     }
-    // Self
     return snake.some(s => s.x === head.x && s.y === head.y);
   }
- 
 
- 
-  return { openSnake, closeSnake, restart, setDirection };
- 
+  return { openSnake, closeSnake, startSnake, setDirection };
+
 })();
