@@ -469,18 +469,18 @@ const SnakeGame = (() => {
  
   let canvas, ctx;
   const box = 15;
-  const COLS = 20; // 300 / 15
-  const ROWS = 20; // 300 / 15
+  const COLS = 20; 
+  
+  const ROWS = 20; 
  
   let snake = [];
   let food = {};
   let score = 0;
   let loop = null;
   let direction = "RIGHT";
-  let nextDirection = "RIGHT"; // buffer to prevent 180-degree flips mid-frame
+  let nextDirection = "RIGHT"; 
   let running = false;
- 
-  /* ── Public: open / close / restart ── */
+
  
   function openSnake() {
     document.getElementById("snake-modal").style.display = "flex";
@@ -496,7 +496,6 @@ const SnakeGame = (() => {
     startGame();
   }
  
-  /* ── Core game lifecycle ── */
  
   function startGame() {
     stopGame();
@@ -504,7 +503,7 @@ const SnakeGame = (() => {
     canvas = document.getElementById("snake-canvas");
     ctx    = canvas.getContext("2d");
  
-    snake         = [{ x: 9 * box, y: 9 * box }]; // start near center
+    snake         = [{ x: 9 * box, y: 9 * box }]; 
     score         = 0;
     direction     = "RIGHT";
     nextDirection = "RIGHT";
@@ -525,12 +524,10 @@ const SnakeGame = (() => {
     window.removeEventListener("keydown", control);
   }
  
-  /* ── Input ── */
  
   function control(e) {
     if (!running) return;
  
-    // Prevent arrow-key page scroll
     if (["ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].includes(e.key)) {
       e.preventDefault();
     }
@@ -543,18 +540,15 @@ const SnakeGame = (() => {
     }
   }
  
-  // Mobile / on-screen button support
   function setDirection(dir) {
     if (!running) return;
     const opposites = { LEFT:"RIGHT", RIGHT:"LEFT", UP:"DOWN", DOWN:"UP" };
     if (dir !== opposites[direction]) nextDirection = dir;
   }
  
-  /* ── Food ── */
  
   function generateFood() {
     let pos;
-    // Keep regenerating until food doesn't land on the snake
     do {
       pos = {
         x: Math.floor(Math.random() * COLS) * box,
@@ -564,12 +558,10 @@ const SnakeGame = (() => {
     return pos;
   }
  
-  /* ── Main loop ── */
  
   function update() {
     if (!running) return;
  
-    // Commit buffered direction
     direction = nextDirection;
  
     const head = { x: snake[0].x, y: snake[0].y };
@@ -579,9 +571,8 @@ const SnakeGame = (() => {
     if (direction === "UP")    head.y -= box;
     if (direction === "DOWN")  head.y += box;
  
-    // Check collision BEFORE drawing the new state
     if (checkGameOver(head)) {
-      draw();               // show the frame that caused death
+      draw();             
       drawGameOver();
       stopGame();
       return;
@@ -600,14 +591,13 @@ const SnakeGame = (() => {
     draw();
   }
  
-  /* ── Rendering ── */
+
  
   function draw() {
-    // Background
+  
     ctx.fillStyle = "#0f1220";
     ctx.fillRect(0, 0, COLS * box, ROWS * box);
  
-    // Snake
     snake.forEach((s, i) => {
       ctx.fillStyle = i === 0 ? "#00d4ff" : "#ffffff";
       ctx.beginPath();
@@ -615,7 +605,7 @@ const SnakeGame = (() => {
       ctx.fill();
     });
  
-    // Food
+
     ctx.fillStyle = "#ff4d8d";
     ctx.beginPath();
     ctx.roundRect(food.x + 1, food.y + 1, box - 2, box - 2, 4);
@@ -624,18 +614,17 @@ const SnakeGame = (() => {
  
   function drawGameOver() {
     const W = COLS * box, H = ROWS * box;
- 
-    // Semi-transparent overlay
+
     ctx.fillStyle = "rgba(0, 0, 0, 0.55)";
     ctx.fillRect(0, 0, W, H);
  
-    // "Game Over" text
+  
     ctx.fillStyle = "#ff4d8d";
     ctx.font      = "bold 22px monospace";
     ctx.textAlign = "center";
     ctx.fillText("GAME OVER", W / 2, H / 2 - 14);
  
-    // Score text
+  
     ctx.fillStyle = "#ffffff";
     ctx.font      = "16px monospace";
     ctx.fillText(`Score: ${score}`, W / 2, H / 2 + 12);
@@ -647,7 +636,7 @@ const SnakeGame = (() => {
     ctx.textAlign = "left"; // reset
   }
  
-  /* ── Collision ── */
+
  
   function checkGameOver(head) {
     // Wall
@@ -658,7 +647,7 @@ const SnakeGame = (() => {
     return snake.some(s => s.x === head.x && s.y === head.y);
   }
  
-  /* ── Public API ── */
+
  
   return { openSnake, closeSnake, restart, setDirection };
  
